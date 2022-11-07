@@ -21,6 +21,8 @@ namespace BikeStoreMintaZH
         private void UserControl1_Load(object sender, EventArgs e)
         {
             FilterCustomers();
+            listBox3.DataSource = context.Products.ToList();
+            listBox3.DisplayMember = "ProductName";
         }
 
         private void FilterCustomers()
