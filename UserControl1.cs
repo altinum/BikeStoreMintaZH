@@ -38,5 +38,17 @@ namespace BikeStoreMintaZH
         {
             FilterCustomers();
         }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedCustomer = (Models.Customer)listBox1.SelectedItem;
+
+            var orders = from x in context.Orders
+                         where x.CustomerFk == selectedCustomer.CustomerSk
+                         select x;
+
+            listBox2.DataSource = orders.ToList();
+            listBox2.DisplayMember = "OrderDate";
+        }
     }
 }
