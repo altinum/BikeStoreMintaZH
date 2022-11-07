@@ -72,6 +72,36 @@ namespace BikeStoreMintaZH
 
             detailedOrderItemBindingSource.DataSource = oderItems.ToList();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //1
+            var selectdOrder = (Models.Order)listBox2.SelectedItem;
+            var selctedProduct = (Models.Product)listBox3.SelectedItem;
+
+            //2 
+            Models.OrderItem orderItem = new Models.OrderItem();
+            orderItem.OrderFk = selectdOrder.OrderSk;
+            orderItem.ProductFk = selctedProduct.ProductSk;
+            orderItem.Quantity = 1;
+            orderItem.ListPrice = selctedProduct.ListPrice;
+
+            //3
+            context.OrderItems.Add(orderItem);
+
+            //4
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            //5
+            ListOrderItems();
+        }
     }
     public class DetailedOrderItem
     {
