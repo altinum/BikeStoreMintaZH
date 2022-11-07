@@ -50,5 +50,35 @@ namespace BikeStoreMintaZH
             listBox2.DataSource = orders.ToList();
             listBox2.DisplayMember = "OrderDate";
         }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListOrderItems();
+        }
+
+        private void ListOrderItems()
+        {
+            var selectdOrder = (Models.Order)listBox2.SelectedItem;
+            var oderItems = from x in context.OrderItems
+                            where x.OrderFk == selectdOrder.OrderSk
+                            select new DetailedOrderItem
+                            {
+                                OrderFk = x.OrderFk,
+                                ProductFk = x.ProductFk,
+                                ProductName = x.ProductFkNavigation.ProductName,
+                                Quantity = x.Quantity,
+                                ListPrice = x.ListPrice
+                            };
+
+            detailedOrderItemBindingSource.DataSource = oderItems.ToList();
+        }
+    }
+    public class DetailedOrderItem
+    {
+        public int OrderFk { get; set; }
+        public int ProductFk { get; set; }
+        public string ProductName { get; set; } = null!;
+        public int Quantity { get; set; }
+        public decimal? ListPrice { get; set; }
     }
 }

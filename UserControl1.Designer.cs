@@ -28,15 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.orderFkDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productFkDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.listPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.detailedOrderItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.detailedOrderItemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -69,6 +77,7 @@
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(204, 479);
             this.listBox2.TabIndex = 2;
+            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
             // listBox3
             // 
@@ -83,16 +92,78 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.orderFkDataGridViewTextBoxColumn,
+            this.productFkDataGridViewTextBoxColumn,
+            this.productNameDataGridViewTextBoxColumn,
+            this.quantityDataGridViewTextBoxColumn,
+            this.listPriceDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.detailedOrderItemBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(546, 67);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(433, 479);
             this.dataGridView1.TabIndex = 4;
+            // 
+            // orderFkDataGridViewTextBoxColumn
+            // 
+            this.orderFkDataGridViewTextBoxColumn.DataPropertyName = "OrderFk";
+            this.orderFkDataGridViewTextBoxColumn.HeaderText = "OrderFk";
+            this.orderFkDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.orderFkDataGridViewTextBoxColumn.Name = "orderFkDataGridViewTextBoxColumn";
+            this.orderFkDataGridViewTextBoxColumn.ReadOnly = true;
+            this.orderFkDataGridViewTextBoxColumn.Visible = false;
+            this.orderFkDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // productFkDataGridViewTextBoxColumn
+            // 
+            this.productFkDataGridViewTextBoxColumn.DataPropertyName = "ProductFk";
+            this.productFkDataGridViewTextBoxColumn.HeaderText = "ProductFk";
+            this.productFkDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.productFkDataGridViewTextBoxColumn.Name = "productFkDataGridViewTextBoxColumn";
+            this.productFkDataGridViewTextBoxColumn.ReadOnly = true;
+            this.productFkDataGridViewTextBoxColumn.Visible = false;
+            this.productFkDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // productNameDataGridViewTextBoxColumn
+            // 
+            this.productNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
+            this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
+            this.productNameDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
+            this.productNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // quantityDataGridViewTextBoxColumn
+            // 
+            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
+            this.quantityDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // listPriceDataGridViewTextBoxColumn
+            // 
+            this.listPriceDataGridViewTextBoxColumn.DataPropertyName = "ListPrice";
+            this.listPriceDataGridViewTextBoxColumn.HeaderText = "ListPrice";
+            this.listPriceDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.listPriceDataGridViewTextBoxColumn.Name = "listPriceDataGridViewTextBoxColumn";
+            this.listPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.listPriceDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // detailedOrderItemBindingSource
+            // 
+            this.detailedOrderItemBindingSource.DataSource = typeof(BikeStoreMintaZH.DetailedOrderItem);
             // 
             // button1
             // 
@@ -139,6 +210,7 @@
             this.Size = new System.Drawing.Size(1282, 581);
             this.Load += new System.EventHandler(this.UserControl1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.detailedOrderItemBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,5 +226,11 @@
         private Button button1;
         private Button button2;
         private Label label1;
+        private DataGridViewTextBoxColumn orderFkDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn productFkDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn listPriceDataGridViewTextBoxColumn;
+        private BindingSource detailedOrderItemBindingSource;
     }
 }
