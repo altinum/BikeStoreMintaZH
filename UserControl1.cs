@@ -102,6 +102,34 @@ namespace BikeStoreMintaZH
             //5
             ListOrderItems();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //1
+            var selectedOrderItem = (DetailedOrderItem)detailedOrderItemBindingSource.Current;
+            
+            //2
+            var ordetItemToBeDeleted = from x in context.OrderItems
+                                       where
+                                       x.OrderFk == selectedOrderItem.OrderFk &&
+                                       x.ProductFk == selectedOrderItem.ProductFk
+                                       select x;
+            //3
+            context.OrderItems.Remove(ordetItemToBeDeleted.FirstOrDefault());
+
+            //4
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            //5
+            ListOrderItems();
+        }
     }
     public class DetailedOrderItem
     {
